@@ -5,12 +5,14 @@ import {
 } from '../actionTypes/actionTypes';
 
 export const getEstado = () => {
-  dispatch(getEstadoStarted());
+  return (dispatch) => {
+    dispatch(getEstadoStarted());
 
-  fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
-    .then((res) => res.json())
-    .then((json) => getEstadoSuccess(json))
-    .catch((error) => getEstadoFailure(error.message));
+    fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+      .then((res) => res.json())
+      .then((json) => dispatch(getEstadoSuccess(json)))
+      .catch((error) => dispatch(getEstadoFailure(error.message)));
+  };
 };
 
 const getEstadoStarted = () => {
