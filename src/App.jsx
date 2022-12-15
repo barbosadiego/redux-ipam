@@ -24,8 +24,11 @@ const App = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
+    // acessar o select
     const itemSelected = inputRef.current;
+    // selecionar o valor da option escolhida
     const id = itemSelected.options[itemSelected.selectedIndex].value;
+    // definir um state para o id do estado
     setEstadoId(id);
   }
 
