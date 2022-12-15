@@ -13,6 +13,7 @@ const CidadesDisplay = ({ id }) => {
 
   useEffect(() => {
     dispatch(getCidades(id));
+    setCidadeInfo([]);
   }, [id]);
 
   async function handleSubmit(e) {
