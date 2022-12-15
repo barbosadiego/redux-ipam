@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getEstado } from './actionCreators/estadoActions';
+import CidadesDisplay from './components/CidadesDisplay';
 import sortByName from './helpers/sortByName';
 
 const App = () => {
@@ -32,8 +33,6 @@ const App = () => {
     setEstadoId(id);
   }
 
-  console.log(estadoId);
-
   // ao iniciar é aprensentado a informção de que os dados
   // estão sendo carregados.
   if (!estadosArray.length) return <h1>Carregando dados...</h1>;
@@ -55,6 +54,7 @@ const App = () => {
           </button>
         </label>
       </form>
+      {estadoId && <CidadesDisplay id={estadoId} />}
     </>
   );
 };
