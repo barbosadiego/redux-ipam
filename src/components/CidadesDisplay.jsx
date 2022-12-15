@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import getCidades from '../actionCreators/cidadesActions';
+import fetchCidadeInfo from '../helpers/fetchCidadeInfo';
+import InfoDisplay from './InfoDisplay';
 
 const CidadesDisplay = ({ id }) => {
-  const [cidadeId, setCidadeId] = useState(null);
+  const [cidadeInfo, setCidadeInfo] = useState([]);
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
   const cidadesArray = store.cidadesReducer.cidadesData;
@@ -13,14 +15,14 @@ const CidadesDisplay = ({ id }) => {
     dispatch(getCidades(id));
   }, [id]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const inputSelection = inputRef.current;
     const id = inputSelection.options[inputSelection.selectedIndex].value;
-    setCidadeId(id);
+    const res = await fetchCidadeInfo(id);
+    setCidadeInfo(res);
   }
 
-  console.log(cidadeId);
   return (
     <div>
       <h2>Selecione um município</h2>
@@ -38,6 +40,7 @@ const CidadesDisplay = ({ id }) => {
           Enviar
         </button>
       </form>
+      {cidadeInfo && <InfoDisplay data={cidadeInfo} />}
     </div>
   );
 };
