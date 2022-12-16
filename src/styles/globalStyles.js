@@ -6,6 +6,11 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Fira Sans', sans-serif;
   }
 
+  body{
+    margin: 0;
+    padding: 0;
+  }
+
   button{
     padding: 0.5rem 1rem;
     border: none;
