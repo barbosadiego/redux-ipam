@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { getEstado } from './actionCreators/estadoActions';
 import CidadesDisplay from './components/CidadesDisplay';
+import Form from './components/Form';
 import sortByName from './helpers/sortByName';
 
 const App = () => {
@@ -44,20 +45,19 @@ const App = () => {
         IPAM<span>consulta</span>IBGE
       </Title>
       <p>Selecione um Estado</p>
-      <form>
-        <label htmlFor="estados">
-          <select ref={inputRef} name="estados" id="estados">
-            {estadosArray.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.nome}
-              </option>
-            ))}
-          </select>
-          <button type="submit" onClick={handleSubmit}>
-            Enviar
-          </button>
-        </label>
-      </form>
+      <Form>
+        <label htmlFor="estados"></label>
+        <select ref={inputRef} name="estados" id="estados">
+          {estadosArray.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.nome}
+            </option>
+          ))}
+        </select>
+        <button type="submit" onClick={handleSubmit}>
+          Enviar
+        </button>
+      </Form>
       {estadoId && <CidadesDisplay id={estadoId} />}
     </StyledApp>
   );
