@@ -3,7 +3,6 @@ import Modal from './Modal';
 
 const InfoDisplay = ({ data }) => {
   const [openModal, setOpenModal] = useState(false);
-  // console.log(data);
 
   if (!data[0]) return null;
 
