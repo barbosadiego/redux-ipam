@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import { getEstado } from './actionCreators/estadoActions';
 import CidadesDisplay from './components/CidadesDisplay';
 import sortByName from './helpers/sortByName';
@@ -38,8 +39,11 @@ const App = () => {
   if (!estadosArray.length) return <h1>Carregando dados...</h1>;
 
   return (
-    <>
-      <h2>Selecione um Estado</h2>
+    <StyledApp>
+      <Title>
+        IPAM<span>consulta</span>IBGE
+      </Title>
+      <p>Selecione um Estado</p>
       <form>
         <label htmlFor="estados">
           <select ref={inputRef} name="estados" id="estados">
@@ -55,8 +59,29 @@ const App = () => {
         </label>
       </form>
       {estadoId && <CidadesDisplay id={estadoId} />}
-    </>
+    </StyledApp>
   );
 };
 
 export default App;
+
+const StyledApp = styled.section`
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+`;
+
+const Title = styled.h1`
+  font-size: clamp(2rem, 5vw, 5rem);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: #777;
+
+  & span {
+    color: #222;
+  }
+`;
