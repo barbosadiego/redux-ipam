@@ -3,7 +3,7 @@ import Modal from './Modal';
 
 const InfoDisplay = ({ data }) => {
   const [openModal, setOpenModal] = useState(false);
-  console.log(data);
+  // console.log(data);
 
   if (!data[0]) return null;
 
@@ -26,7 +26,9 @@ const InfoDisplay = ({ data }) => {
         <strong>{data[0].municipio['regiao-imediata'].nome}</strong>
       </p>
       <button onClick={() => setOpenModal(true)}>Abrir mapa</button>
-      {openModal && <Modal />}
+      {openModal && (
+        <Modal location={data[0].municipio.id} openModal={setOpenModal} />
+      )}
     </div>
   );
 };
