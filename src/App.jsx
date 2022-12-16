@@ -44,7 +44,7 @@ const App = () => {
       <Title>
         IPAM<span>consulta</span>IBGE
       </Title>
-      <p>Selecione um Estado</p>
+      <h2>Selecione um Estado</h2>
       <Form>
         <label htmlFor="estados"></label>
         <select ref={inputRef} name="estados" id="estados">
@@ -72,7 +72,6 @@ const StyledApp = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
 `;
 
 const Title = styled.h1`
