@@ -30,6 +30,16 @@ const GlobalStyle = createGlobalStyle`
       }
     }
   }
+
+  .leaflet-container{
+    width: 700px;
+    height: 700px;
+
+    @media screen and (max-width: 730px){
+      width: 100vw;
+      height: 100vh;
+    }
+  }
 `;
 
 export default GlobalStyle;
