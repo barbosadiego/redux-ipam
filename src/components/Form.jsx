@@ -9,6 +9,7 @@ export default Form;
 
 const StyledForm = styled.form`
   display: flex;
+  justify-content: center;
   gap: 1rem;
 
   & select {
