@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Modal from './Modal';
 
 const InfoDisplay = ({ data }) => {
-  // console.log(data);
+  const [openModal, setOpenModal] = useState(false);
+  console.log(data);
 
   if (!data[0]) return null;
 
@@ -23,6 +25,8 @@ const InfoDisplay = ({ data }) => {
         Região do Município:{' '}
         <strong>{data[0].municipio['regiao-imediata'].nome}</strong>
       </p>
+      <button onClick={() => setOpenModal(true)}>Abrir mapa</button>
+      {openModal && <Modal />}
     </div>
   );
 };
