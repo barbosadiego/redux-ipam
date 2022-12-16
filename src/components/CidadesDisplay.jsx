@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import getCidades from '../actionCreators/cidadesActions';
 import fetchCidadeInfo from '../helpers/fetchCidadeInfo';
+import Form from './Form';
 import InfoDisplay from './InfoDisplay';
 
 const CidadesDisplay = ({ id }) => {
@@ -27,20 +28,19 @@ const CidadesDisplay = ({ id }) => {
   return (
     <div>
       <h2>Selecione um município</h2>
-      <form>
-        <label htmlFor="municipios">
-          <select ref={inputRef} name="municipios" id="municipios">
-            {cidadesArray.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.nome}
-              </option>
-            ))}
-          </select>
-        </label>
+      <Form>
+        <label htmlFor="municipios"></label>
+        <select ref={inputRef} name="municipios" id="municipios">
+          {cidadesArray.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.nome}
+            </option>
+          ))}
+        </select>
         <button type="submit" onClick={handleSubmit}>
           Enviar
         </button>
-      </form>
+      </Form>
       {cidadeInfo && <InfoDisplay data={cidadeInfo} />}
     </div>
   );
