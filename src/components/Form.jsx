@@ -9,4 +9,9 @@ export default Form;
 
 const StyledForm = styled.form`
   display: flex;
+  gap: 1rem;
+
+  & select {
+    padding: 0.5rem;
+  }
 `;
