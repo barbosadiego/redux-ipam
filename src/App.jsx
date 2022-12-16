@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { getEstado } from './actionCreators/estadoActions';
 import CidadesDisplay from './components/CidadesDisplay';
 import Form from './components/Form';
+import Loading from './components/Loading';
 import sortByName from './helpers/sortByName';
 
 const App = () => {
@@ -37,7 +38,7 @@ const App = () => {
 
   // ao iniciar é aprensentado a informção de que os dados
   // estão sendo carregados.
-  if (!estadosArray.length) return <h1>Carregando dados...</h1>;
+  if (!estadosArray.length) return <Loading />;
 
   return (
     <StyledApp>
