@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import getCidades from '../actionCreators/cidadesActions';
 import fetchCidadeInfo from '../helpers/fetchCidadeInfo';
 import Form from './Form';
@@ -26,7 +27,7 @@ const CidadesDisplay = ({ id }) => {
   }
 
   return (
-    <div>
+    <StyledCidadesDisplay>
       <h2>Selecione um município</h2>
       <Form>
         <label htmlFor="municipios"></label>
@@ -42,8 +43,12 @@ const CidadesDisplay = ({ id }) => {
         </button>
       </Form>
       {cidadeInfo && <InfoDisplay data={cidadeInfo} />}
-    </div>
+    </StyledCidadesDisplay>
   );
 };
 
 export default CidadesDisplay;
+
+const StyledCidadesDisplay = styled.div`
+  text-align: center;
+`;
