@@ -32,7 +32,7 @@ const StyledModal = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 
   & button {
-    background-color: red;
+    background-color: #f44336;
     @media (max-width: 730px) {
       position: absolute;
       z-index: 1000;
