@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import { getEstado } from './actionCreators/estadoActions';
 import CidadesDisplay from './components/CidadesDisplay';
+import Form from './components/Form';
 import sortByName from './helpers/sortByName';
 
 const App = () => {
@@ -38,25 +40,47 @@ const App = () => {
   if (!estadosArray.length) return <h1>Carregando dados...</h1>;
 
   return (
-    <>
+    <StyledApp>
+      <Title>
+        IPAM<span>consulta</span>IBGE
+      </Title>
       <h2>Selecione um Estado</h2>
-      <form>
-        <label htmlFor="estados">
-          <select ref={inputRef} name="estados" id="estados">
-            {estadosArray.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.nome}
-              </option>
-            ))}
-          </select>
-          <button type="submit" onClick={handleSubmit}>
-            Enviar
-          </button>
-        </label>
-      </form>
+      <Form>
+        <label htmlFor="estados"></label>
+        <select ref={inputRef} name="estados" id="estados">
+          {estadosArray.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.nome}
+            </option>
+          ))}
+        </select>
+        <button type="submit" onClick={handleSubmit}>
+          Enviar
+        </button>
+      </Form>
       {estadoId && <CidadesDisplay id={estadoId} />}
-    </>
+    </StyledApp>
   );
 };
 
 export default App;
+
+const StyledApp = styled.section`
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Title = styled.h1`
+  font-size: clamp(2rem, 5vw, 5rem);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: #777;
+
+  & span {
+    color: #222;
+  }
+`;
