@@ -1,16 +1,21 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import municipio from '../assets/municipios.json';
 import Map from './Map';
 
 const Modal = ({ location, openModal }) => {
-  const modalRef = useRef();
   const { latitude, longitude } = municipio.find(
     (item) => item.codigo_ibge === location,
   );
 
+  function handleOutside(e) {
+    if (e.target === e.currentTarget) {
+      openModal(false);
+    }
+  }
+
   return (
-    <StyledModal ref={modalRef}>
+    <StyledModal onClick={(e) => handleOutside(e)}>
       <button onClick={() => openModal(false)}>Fechar</button>
       <Map lat={latitude} long={longitude} />
     </StyledModal>
