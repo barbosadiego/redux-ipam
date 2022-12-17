@@ -14,6 +14,12 @@ const Modal = ({ location, openModal }) => {
     }
   }
 
+  // se não houver valores de lat e long no arquivo
+  // referente ao município selecionado será informado
+  // ao usuário um erro
+  if (!latitude || !longitude)
+    return <p>Sem informações para renderizar o mapa da área.</p>;
+
   return (
     <StyledModal onClick={(e) => handleOutside(e)}>
       <button onClick={() => openModal(false)}>Fechar</button>
