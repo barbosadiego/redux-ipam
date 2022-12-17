@@ -38,7 +38,15 @@ const App = () => {
 
   // ao iniciar é aprensentado a informção de que os dados
   // estão sendo carregados.
-  if (!estadosArray.length) return <Loading />;
+  if (!estadosArray.length && !store.estadoReducer.error) return <Loading />;
+
+  // caso ocorrar um erro no carregamento uma mensagem é exibida
+  if (store.estadoReducer.error)
+    return (
+      <StyledApp>
+        <p>Um erro ocorreu. Tente novamente mais tarde</p>
+      </StyledApp>
+    );
 
   return (
     <StyledApp>
