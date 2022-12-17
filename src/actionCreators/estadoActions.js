@@ -28,9 +28,9 @@ const getEstadoSuccess = (data) => {
   };
 };
 
-const getEstadoFailure = ({ error }) => {
+const getEstadoFailure = (error) => {
   return {
     type: GET_ESTADO_FAILURE,
-    payload: { error },
+    payload: error,
   };
 };
