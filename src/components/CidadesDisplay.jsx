@@ -12,6 +12,7 @@ const CidadesDisplay = ({ id }) => {
   const dispatch = useDispatch();
   const cidadesArray = store.cidadesReducer.cidadesData;
   const inputRef = useRef();
+  const loadingError = store.cidadesReducer.error;
 
   useEffect(() => {
     dispatch(getCidades(id));
@@ -24,6 +25,14 @@ const CidadesDisplay = ({ id }) => {
     const id = inputSelection.options[inputSelection.selectedIndex].value;
     const res = await fetchCidadeInfo(id);
     setCidadeInfo(res);
+  }
+
+  // caso ocorra algun erro no carregamento dos dados
+  // será renderizada uma mensagem ao usuário
+  if (loadingError) {
+    return (
+      <p>Ocorreu um erro ao carregar os dados. Tente novamente mais tarde.</p>
+    );
   }
 
   return (
