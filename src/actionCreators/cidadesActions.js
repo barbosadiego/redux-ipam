@@ -13,7 +13,7 @@ const getCidades = (id) => {
     )
       .then((res) => res.json())
       .then((json) => dispatch(getCidadesSuccess(json)))
-      .catch((error) => dispatch(getCidadesFailure(error)));
+      .catch((error) => dispatch(getCidadesFailure(error.message)));
   };
 };
 
@@ -30,9 +30,9 @@ const getCidadesSuccess = (data) => {
   };
 };
 
-const getCidadesFailure = ({ error }) => {
+const getCidadesFailure = (error) => {
   return {
-    types: GET_MUNICIPIO_FAILURE,
+    type: GET_MUNICIPIO_FAILURE,
     payload: error,
   };
 };
