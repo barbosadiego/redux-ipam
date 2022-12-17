@@ -3,11 +3,19 @@ import styled from 'styled-components';
 import municipio from '../assets/municipios.json';
 import Map from './Map';
 
+// este componente rebede o id do município (location)
+// e o estado de exibição (true ou false)
 const Modal = ({ location, openModal }) => {
+  // em assets/municipios.json está relacionada
+  // a localização geográfica dos municípios
+  // onde é retornado os dados para passagem via props
+  // para o componente Map
   const { latitude, longitude } = municipio.find(
     (item) => item.codigo_ibge === location,
   );
 
+  // este método verifica se ocorreu click
+  // fora da área de conteúdo do Modal para fechá-lo
   function handleOutside(e) {
     if (e.target === e.currentTarget) {
       openModal(false);
