@@ -32,7 +32,7 @@ const cidadesReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: payload.error,
+        error: payload,
       };
 
     default:
