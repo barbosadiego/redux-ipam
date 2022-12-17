@@ -7,26 +7,45 @@ import Form from './Form';
 import InfoDisplay from './InfoDisplay';
 
 const CidadesDisplay = ({ id }) => {
+  // estado local usado no component InfoDisplay
+  // por se tratar de informação com escopo local
+  // não fica armazenada no store do Redux
   const [cidadeInfo, setCidadeInfo] = useState([]);
+  // acesso a store do Redux
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
+  // acesso mais conveniente aos dados das cidades
   const cidadesArray = store.cidadesReducer.cidadesData;
+  // hook para referenciar o select
   const inputRef = useRef();
+  // armazenar eventual erro
   const loadingError = store.cidadesReducer.error;
 
   useEffect(() => {
+    // ao início e atualização do id
+    // é disparado o método getCidades
+    // no cidadesActions.js
     dispatch(getCidades(id));
+    // ao atualizar o estado (id props)
+    // limpa a relação dos municípios
     setCidadeInfo([]);
   }, [id]);
 
   async function handleSubmit(e) {
     e.preventDefault();
+    // acessar o select
     const inputSelection = inputRef.current;
+    // selecionar o valor da option escolhida (município)
     const id = inputSelection.options[inputSelection.selectedIndex].value;
     try {
+      // com o id do município é feito o fetch do dados
       const res = await fetchCidadeInfo(id);
+      // aqui o resultado do fetch é saldo
+      // no estado local CidadesInfo
       setCidadeInfo(res);
     } catch (error) {
+      // em caso de erro é exibido uma mensagem
+      // no console do navegador
       console.log(error);
     }
   }

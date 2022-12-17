@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import Modal from './Modal';
 
 const InfoDisplay = ({ data }) => {
+  // hook para gerenciar a exibição do
+  // componente Modal
   const [openModal, setOpenModal] = useState(false);
 
+  // caso não haja dados recebidos
+  // via props não será exibido nada
   if (!data[0]) return null;
 
   return (
