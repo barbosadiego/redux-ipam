@@ -23,8 +23,12 @@ const CidadesDisplay = ({ id }) => {
     e.preventDefault();
     const inputSelection = inputRef.current;
     const id = inputSelection.options[inputSelection.selectedIndex].value;
-    const res = await fetchCidadeInfo(id);
-    setCidadeInfo(res);
+    try {
+      const res = await fetchCidadeInfo(id);
+      setCidadeInfo(res);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // caso ocorra algun erro no carregamento dos dados
