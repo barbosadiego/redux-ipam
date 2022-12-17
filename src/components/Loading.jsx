@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
+// comoponente para exibição visual
+// de carregamento da página
 const Loading = () => {
   return (
     <StyledLoading>
